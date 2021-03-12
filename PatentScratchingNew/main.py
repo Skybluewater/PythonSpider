@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib import parse, request, response
 from baseClass import base
-import json
+import requests
 import xlwt
 from xlrd import open_workbook
 
@@ -45,6 +45,16 @@ class Scratching(base):
                         print(self.count)
                         return dic_new
 
+    def check_url_set(self, url_set):
+        while len(url_set):
+            dic_new = self.cpc_extract(url_set.pop())
+            for CPC, CPC_count in dic_new.items():
+                if CPC in self.dic:
+                    self.dic[CPC] = self.dic[CPC] + CPC_count
+                else:
+                    self.dic[CPC] = CPC_count
+            print(self.dic)
+
     def page_find(self):
         self.page_index += 1
         Base = base()
@@ -63,8 +73,14 @@ class Scratching(base):
         respond = respond.decode('utf-8')
 
         soup = BeautifulSoup(respond, 'html.parser')
-        tables = soup.find_all('table')
         url_set = set()
+        if str(soup.title.string).count("Single Document"):
+            # print(soup.title.string)
+            url_new = respond.split("URL=")[1].split("&OS=")[0]
+            url_set.add(url_new)
+            self.check_url_set(url_set)
+            return
+        tables = soup.find_all('table')
         url_next_page = ""
 
         for table in tables:
@@ -78,14 +94,7 @@ class Scratching(base):
                         else:
                             url_set.add(a_record['href'])
 
-        while len(url_set):
-            dic_new = self.cpc_extract(url_set.pop())
-            for CPC, CPC_count in dic_new.items():
-                if CPC in self.dic:
-                    self.dic[CPC] = self.dic[CPC] + CPC_count
-                else:
-                    self.dic[CPC] = CPC_count
-            print(self.dic)
+        self.check_url_set(url_set)
 
         if url_next_page != "":
             print("new page index is " + str(self.page_index + 1))

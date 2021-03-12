@@ -39,6 +39,12 @@ class base:
         }
 
         self.headers = {
-            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'
+            'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+            'Accept-Encoding': "gzip, deflate",
+            'Accept-Language': "zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7",
+            'Connection': "keep-alive",
+            'Host': "patft.uspto.gov",
+            'Referer': "http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28CPCL%2FG02B+AND+%28AN%2F%22Wells+Fargo%22+OR+AANM%2F%22Wells+Fargo%22%29%29+AND+ISD%2F19900101-%3E20200101%29&Refine=Refine+Search&Query=CPCL%2FG02B+AND+%28AN%2F%22Wells+Fargo%22+OR+AANM%2F%22Wells+Fargo%22%29+AND+ISD%2F19900101-%3E20200101",
+            'Upgrade-Insecure-Requests': "1",
+            'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36}"
         }
-
