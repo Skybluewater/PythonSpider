@@ -40,9 +40,10 @@ class Scratching(base):
                             CPC = CPC_raw.split("/")[0].replace(" ", "")
                             if CPC not in dic_new and CPC.count(self.param_wanted):
                                 dic_new[CPC] = 1
-                        break
-        print(self.count)
-        return dic_new
+                            elif CPC in dic_new:
+                                dic_new[CPC] += 1
+                        print(self.count)
+                        return dic_new
 
     def page_find(self):
         self.page_index += 1
@@ -153,7 +154,6 @@ book_write.save("saved.xlsx")
 #         dic_CPC_Number[CPC_name] = len_of_dic + 1
 #         list_to_append.append(CPC_count)
 #     list_to_append[0] = bank_name
-#     sheet_write.write
 
 
 # with open("{label} {bank_name}.json".format(label=search.param_wanted, bank_name=search.bank_wanted),
